@@ -1,5 +1,13 @@
 //送信するメッセージをシートから抽出して送信。
 function createMessage() {
+  
+  var d = new Date();
+  if(setLog(d, false)){
+    CompileTime();
+    setLog(d, true);
+  }
+  CompileTime10();
+
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName('シート1');
   const day_hour = sheet.getRange('G1').getValue();

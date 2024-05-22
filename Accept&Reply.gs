@@ -13,10 +13,19 @@ function doPost(e){
         var replyText; /*返信メッセージ*/
         if(event.message.text == 'ON'){
           //Aircon_ON();
-          replyText = Light_ON();
+          if(setLog(new Date(), true)){
+            replyText = Light_ON();
+          }else{
+            replyText = "既にONです。";
+          }
         } else if (event.message.text == 'OFF'){
           //Aircon_OFF()
-          replyText = Light_OFF();
+          if(setLog(new Date(), false)){
+            replyText = Light_OFF();
+            CompileTime();
+          }else{
+            replyText = "既にOFFです。";
+          }
         } else {
           replyText = reservation(event.message.text);
         }
