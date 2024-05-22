@@ -18,7 +18,7 @@ function testWhenToggled() {
   //var d = new Date();
   var d = new Date(2024, 05, 1, 8, 15);
   setLog(d, true);
-  if(setLog(AddTime(d, new Date(2000, 1, 1, 1, 15, 0)), false)){
+  if(setLog(AddTime(d, new Date(2000, 0, 1, 1, 15, 0)), false)){
     CompileTime();
   }
 }
@@ -35,7 +35,7 @@ function test10oclock() {
 
 //logを残す。エアコンの状態が変わっていないならfalseを返す。
 // d : 日時
-// mode : ONするかどうか
+// mode : ONにするかどうか
 function setLog(d, mode) {
   let sheet = getSheet('log');
   let recentRow = sheet.getDataRange().getValues().length;
