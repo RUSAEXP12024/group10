@@ -8,12 +8,6 @@ function test() {
   Logger.log(d2);
 }
 
-// 不完全。
-function initCompilation() {
-  var d = new Date();
-  getSheet('compilation').getRange('A4').setValue(d.setHours(0, 0, 0, 0));
-}
-
 function testWhenToggled() {
   //var d = new Date();
   var d = new Date(2024, 05, 1, 8, 15);
@@ -33,6 +27,21 @@ function test10oclock() {
   CompileTime10();
 }
 
+//シートcompilationを初期化
+function initCompilation() {
+  let sheet = getSheet('compilation');
+  let d = new Date();
+  let monthCounter = sheet.getRange('A6').getValue();
+  sheet.getRange('A4').setValue(d.setHours(0, 0, 0, 0));
+  sheet.getRange('C2').setValue(d.setHours(0, 0, 0, 0));
+  for (let i = 0; i < 31; i++) {
+    sheet.getRange(i+2, 2).setValue('');
+  }
+  for (let i = 3; i <= monthCounter; i++) {
+    sheet.getRange(i, 3).setValue('');
+  }
+}
+
 //logを残す。エアコンの状態が変わっていないならfalseを返す。
 // d : 日時
 // mode : ONにするかどうか
@@ -43,11 +52,6 @@ function setLog(d, mode) {
   let wasACOn = false;
   if (sheet.getRange(recentRow, 2).getValue() == ''){
     wasACOn = true;
-  }
-
-  //for debug
-  if (mode == -1){
-    mode = !wasACOn;
   }
 
   if (wasACOn == mode){
@@ -86,13 +90,13 @@ function CompileTime10() {
   sheet.getRange(today.getDate()+1, 2).setValue(todaySum);
   let prevSum = new Date(sheet.getRange(monthCounter, 3).getValue());
   sheet.getRange(monthCounter, 3).setValue(AddTime(prevSum, todaySum));
-  sheet.getRange('A4').setValue(tomorrow.setHours(0, 0, 0, 0));
+  sheet.getRange('A4').setValue(new Date(tomorrow.setHours(0, 0, 0, 0)));
 
   if (today.getMonth() != tomorrow.getMonth()){
     for (let i = 0; i < 31; i++) {
       sheet.getRange(i+2, 2).setValue('');
     }
-    sheet.getRange(monthCounter+1, 3).setValue(tomorrow.setHours(0, 0, 0, 0));
+    sheet.getRange(monthCounter+1, 3).setValue(new Date(tomorrow.setHours(0, 0, 0, 0)));
   }
 }
 
