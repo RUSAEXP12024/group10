@@ -14,14 +14,15 @@ function doPost(e){
         if(event.message.text == 'ON'){
           //Aircon_ON();
           if(setLog(new Date(), true)){
-            replyText = Light_ON();
+            //replyText = Light_ON();
+            replyText = Aircon_ON();
           }else{
             replyText = "既にONです。";
           }
         } else if (event.message.text == 'OFF'){
-          //Aircon_OFF()
           if(setLog(new Date(), false)){
-            replyText = Light_OFF();
+            //replyText = Light_OFF();
+            replyText = Aircon_OFF();
             CompileTime();
           }else{
             replyText = "既にOFFです。";
