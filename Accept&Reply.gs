@@ -12,7 +12,6 @@ function doPost(e){
         //sheet.appendRow([new Date(), event.message.text]); // スプレッドシートに追記
         var replyText; /*返信メッセージ*/
         if(event.message.text == 'ON'){
-          //Aircon_ON();
           if(setLog(new Date(), true)){
             //replyText = Light_ON();
             replyText = Aircon_ON();
