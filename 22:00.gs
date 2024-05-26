@@ -13,7 +13,7 @@ function tenPM(){
   calculateMonthlyElectricBill();
 
   //メッセージの作成・送信
-  createMessage(d);
+  createMessage();
 
   const triggers = ScriptApp.getProjectTriggers();
   //トリガー登録のforループを実行

@@ -32,7 +32,8 @@ function push(text) {
 }
 
 //送信するメッセージをシートから抽出して送信。
-function createMessage(d) {
+function createMessage() {
+  d = new Date();
   var sheet = getSheet('compilation');
   var day_hour = sheet.getRange('B'+ (d.getDate()+1)).getValue(); //今日の利用時間を取得
   day_hour = (day_hour.getHours() + day_hour.getMinutes()/60).toFixed(1) //今日の利用時間を単位変換(hour)・小数点1桁
@@ -42,6 +43,5 @@ function createMessage(d) {
   month_price = month_price.toFixed(0); //小数点以下切り捨て
   //メッセージを定義する
   message = "<通知>\n今日の利用時間: "+day_hour+"時間\n今日の利用料金: "+day_price+"円\n今月の利用料金: "+month_price+"円"
-  //push(message);
-  Logger.log(message);
+  push(message);
 }
