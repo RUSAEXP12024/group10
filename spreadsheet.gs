@@ -1,30 +1,3 @@
-/*
-// 不完全。
-function initCompilation() {
-  var d = new Date();
-  getSheet(sheet_name).getRange('A4').setValue(d.setHours(0, 0, 0, 0));
-}
-
-function testWhenToggled() {
-  //var d = new Date();
-  var d = new Date(2024, 05, 1, 8, 15);
-  setLog(d, true);
-  if(setLog(AddTime(d, new Date(2000, 1, 1, 1, 15, 0)), false)){
-    CompileTime();
-  }
-}
-
-function test10oclock() {
-  //var d = new Date();
-  var d = new Date(2024, 05, 1, 22, 00);
-  if(setLog(d, false)){
-    CompileTime();
-    setLog(d, true);
-  }
-  CompileTime10();
-}
-*/
-
 function getSheet(name){
   const SPREADSHEET_ID = '1zOAJpmF7q0e-7_QCEXvL_CKSN3adiuKqeAhF4eDsMD4';
   const sheet = SpreadsheetApp.getActiveSheet();
