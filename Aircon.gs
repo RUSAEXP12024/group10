@@ -20,8 +20,6 @@ function Aircon_ON() {
   var response = UrlFetchApp.fetch(url, options);
   Logger.log(response.getContentText());
 
-  cancel(); /*トリガー、予約の削除。繰り返し防止*/
-
   message = "エアコンをONにしました";
   return message;
 }

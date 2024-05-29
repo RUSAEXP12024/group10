@@ -6,7 +6,7 @@ function reservation(str) {
 
   time = str.replace(":","");// HH/MM
   Logger.log(time.length);
-  if(time.length < 3){
+  if(time.length < 4){
     message = "エアコンの予約をするには〇〇:〇〇の形式で時間を指定してください。\n例:「6:30」「23:59」「00:00」";
     return message;
   }
@@ -45,11 +45,12 @@ function setAirconTrigger(hour, min){
     time.setHours(hour);
     time.setMinutes(min);
   }
+  
   //前回の予約を削除
   cancel();
   
   //newTriggerメソッドでAircon_ONを特定日時でトリガー登録。予約設定。
-  ScriptApp.newTrigger('Aircon_ON').timeBased().at(time).create();
+  ScriptApp.newTrigger('reservation_Aircon_ON').timeBased().at(time).create();
   message = (time.getMonth()+1 +"月"+ time.getDate() + "日 " + time.getHours() + "時" + time.getMinutes() + "分にエアコンをONにします。(予約をキャンセルする場合は、「キャンセル」と入力してください。)");
   return message;
 }
@@ -59,7 +60,7 @@ function cancel(){ /*予約トリガーを削除*/
   //トリガー登録のforループを実行
   for(let i=0;i<triggers.length;i++){
     //取得したトリガーの関数がAircon_ONの場合、deleteTriggerで削除
-    if(triggers[i].getHandlerFunction()==='Aircon_ON'){
+    if(triggers[i].getHandlerFunction()==='reservation_Aircon_ON'){
       ScriptApp.deleteTrigger(triggers[i]);
       message = "予約をキャンセルしました。";
       return message;
